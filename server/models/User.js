@@ -67,14 +67,10 @@ UserSchema.pre('save', async function(next) {
 
 UserSchema.methods.getAuthToken = function() {
 	const config = {
-		expiresIn: process.env.SESSION_EXPIRE || '15d'
+		expiresIn: process.env.SESSION_EXPIRE
 	};
 
-	return jwt.sign(
-		{ id: this._id },
-		process.env.JWT_SECRET || 'passexample',
-		config
-	);
+	return jwt.sign({ id: this._id }, process.env.JWT_SECRET, config);
 };
 
 UserSchema.methods.verifyPassword = async function(enteredPassword) {

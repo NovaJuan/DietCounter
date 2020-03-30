@@ -6,10 +6,18 @@ import path from 'path';
 import colors from 'colors';
 import connectDB from './config/database';
 
-// Setting enviroment variables (if file exists)
-dotenv.config({
-	path: path.join(__dirname, 'config', 'config.env')
-});
+// Setting enviroment variables
+
+if (process.env.ENVIROMENT === 'docker') {
+	// if is in docker container
+	dotenv.config({
+		path: path.join(__dirname, 'config', 'docker.env')
+	});
+} else {
+	dotenv.config({
+		path: path.join(__dirname, 'config', 'config.env')
+	});
+}
 
 const PORT = process.env.PORT || 5000;
 

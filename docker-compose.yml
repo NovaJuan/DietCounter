@@ -1,4 +1,8 @@
 version: '3'
+
+volumes:
+  mongo_data:
+
 services:
   application:
     container_name: dietcounter
@@ -8,8 +12,12 @@ services:
       - '80:5000'
     links:
       - mongo
+    environment:
+      - ENVIROMENT=docker
   mongo:
     container_name: mongo
     image: mongo
     ports:
       - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
