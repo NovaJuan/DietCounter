@@ -28,7 +28,7 @@ export const protect = asyncCatcher(async (req, res, next) => {
 	next();
 });
 
-export const authorized = function() {
+export const authorized = function () {
 	const args = [...arguments];
 
 	return (req, res, next) => {
