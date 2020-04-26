@@ -4,4 +4,3 @@
 - Node.js
 - MongoDB
 - React.js
-- Docker
